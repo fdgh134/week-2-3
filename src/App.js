@@ -1,11 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
-  const counterStore = useSelector((state) => state);
-  console.log(counterStore);
-  return 
-    <div></div>
+  const dispatch = useDispatch();
+
+  const number = useSelector((state) => state.counter.number);
+  console.log(number);
+  return( 
+    <div>
+      {number}
+      <button
+        onClick={() => {
+          dispatch({type:"PLUS_ONE"});
+       }}
+      >+1</button>
+      <button
+        onClick={() => {
+          dispatch({type:"MINUS_ONE"});
+        }}
+      >-1</button>
+    </div>
+  );
 }
 
 export default App;
